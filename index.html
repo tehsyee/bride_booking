@@ -3,19 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lumière Bridal Photography</title>
-  <meta name="description" content="Timeless, intimate bridal photography for the modern romantic couple. Book your session today.">
+  <title>映月 · Lumière Bridal Photography</title>
+  <meta name="description" content="Timeless, intimate bridal photography inspired by the grace of Chinese tradition. Book your session today.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    /* ── Reset & Base ──────────────────────────────────────── */
+    /* ── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --red:        #C0392B;
+      --red-dk:     #9B1B1B;
+      --gold:       #C9A84C;
+      --gold-lt:    #E8D5A3;
+      --bg:         #FDF6EC;
+      --bg-alt:     #F5E6D3;
+      --ink:        #1C1008;
+      --lacquer:    #1A0A0A;
+      --text:       #3D1A1A;
+      --muted:      #7A5C5C;
+      --jade:       #4E7C6B;
+      --border:     #D4A0A0;
+      --font-disp:  'Ma Shan Zheng', 'Noto Serif SC', serif;
+      --font-head:  'Noto Serif SC', serif;
+      --font-body:  'Noto Sans SC', sans-serif;
+    }
+
+    /* ── Reset ──────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      font-family: 'Raleway', sans-serif;
-      background: #FFFAF6;
-      color: #3D2C2C;
+      font-family: var(--font-body);
+      background: var(--bg);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      color: var(--text);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
@@ -24,157 +44,180 @@
     ul { list-style: none; }
     button { cursor: pointer; font-family: inherit; }
 
-    .container {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
 
+    /* ── Shared typography ──────────────────────────────────── */
     .section-label {
       display: block;
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-size: 0.7rem;
+      font-weight: 500;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: #D4AF7A;
-      margin-bottom: 1rem;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
     }
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-family: var(--font-head);
+      font-size: clamp(1.9rem, 4vw, 3rem);
       font-weight: 300;
       line-height: 1.2;
-      color: #3D2C2C;
+      color: var(--text);
       margin-bottom: 1rem;
     }
     .section-subtitle {
-      font-size: 1rem;
-      color: #7A6A6A;
+      font-size: 0.93rem;
+      color: var(--muted);
       max-width: 520px;
+      font-weight: 300;
+      line-height: 1.85;
     }
 
-    /* ── Buttons ───────────────────────────────────────────── */
+    /* ── Ornament divider ───────────────────────────────────── */
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    .ornament::before, .ornament::after {
+      content: '';
+      flex: 1;
+      max-width: 100px;
+      height: 1px;
+    }
+    .ornament::before { background: linear-gradient(to right, transparent, var(--gold)); }
+    .ornament::after  { background: linear-gradient(to left,  transparent, var(--gold)); }
+    .ornament span {
+      font-family: var(--font-disp);
+      font-size: 1.1rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    /* ── Scroll reveal ──────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.on { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.12s; }
+    .d2 { transition-delay: 0.24s; }
+
+    /* ── Buttons ────────────────────────────────────────────── */
     .btn-primary {
       display: inline-block;
-      background: #C9956C;
-      color: #fff;
-      padding: 1rem 2.6rem;
-      border-radius: 2px;
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
+      background: var(--red);
+      color: var(--bg);
+      padding: 0.95rem 2.6rem;
+      border-radius: 1px;
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       border: none;
-      transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+      transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
     }
     .btn-primary:hover {
-      background: #A0706A;
+      background: var(--red-dk);
       transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(160,112,106,0.3);
+      box-shadow: 0 12px 32px rgba(155,27,27,0.3);
     }
-    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:active { transform: none; }
 
     .btn-outline {
       display: inline-block;
-      border: 1.5px solid #C9956C;
-      color: #C9956C;
+      border: 1px solid var(--gold);
+      color: var(--gold);
       background: transparent;
       padding: 0.9rem 2.2rem;
-      border-radius: 2px;
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
+      border-radius: 1px;
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+      transition: background 0.3s, color 0.3s, transform 0.25s;
     }
     .btn-outline:hover {
-      background: #C9956C;
-      color: #fff;
+      background: var(--gold);
+      color: var(--ink);
       transform: translateY(-2px);
     }
 
-    /* ── Navigation ────────────────────────────────────────── */
+    /* ── Navbar ─────────────────────────────────────────────── */
     #navbar {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      background: rgba(255, 250, 246, 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(242, 196, 206, 0.35);
-      transition: box-shadow 0.3s ease;
+      background: rgba(253,246,236,0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201,168,76,0.22);
+      transition: box-shadow 0.3s;
     }
-    #navbar.scrolled {
-      box-shadow: 0 2px 24px rgba(61, 44, 44, 0.08);
-    }
+    #navbar.scrolled { box-shadow: 0 2px 28px rgba(28,16,8,0.1); }
     .nav-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.3rem 2rem;
     }
     .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 400;
-      font-style: italic;
-      color: #3D2C2C;
-      letter-spacing: 0.06em;
+      font-family: var(--font-disp);
+      font-size: 2rem;
+      color: var(--red);
+      letter-spacing: 0.05em;
+      line-height: 1;
     }
-    .nav-links {
-      display: flex;
-      gap: 2.8rem;
-      align-items: center;
-    }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
     .nav-links a {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #3D2C2C;
+      color: var(--text);
       position: relative;
       padding-bottom: 3px;
-      transition: color 0.2s ease;
+      transition: color 0.25s;
     }
     .nav-links a::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0;
-      width: 0;
-      height: 1px;
-      background: #C9956C;
-      transition: width 0.3s ease;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.35s;
     }
-    .nav-links a:hover::after,
-    .nav-links a.active::after { width: 100%; }
-    .nav-links a:hover,
-    .nav-links a.active { color: #C9956C; }
-    .nav-links .nav-book {
-      background: #C9956C;
-      color: #fff;
-      padding: 0.55rem 1.4rem;
-      border-radius: 2px;
-      transition: background 0.25s ease;
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a:hover, .nav-links a.active { color: var(--red); }
+    .nav-book {
+      background: var(--red) !important;
+      color: var(--bg) !important;
+      padding: 0.5rem 1.4rem;
+      border-radius: 1px;
+      transition: background 0.25s !important;
     }
-    .nav-links .nav-book::after { display: none; }
-    .nav-links .nav-book:hover { background: #A0706A; color: #fff; }
+    .nav-book::after { display: none !important; }
+    .nav-book:hover { background: var(--red-dk) !important; }
 
     .hamburger {
       display: none;
       background: none;
       border: none;
-      font-size: 1.5rem;
-      color: #3D2C2C;
-      padding: 0.3rem;
-      line-height: 1;
+      padding: 0.4rem;
+      color: var(--red);
     }
+    .hamburger svg { width: 24px; height: 24px; display: block; }
 
-    /* ── Hero ──────────────────────────────────────────────── */
+    /* ── Hero ───────────────────────────────────────────────── */
     #hero {
-      min-height: 100vh;
-      background: url('https://images.unsplash.com/photo-1519741497674-4ff4ef5a6a5f?w=1600&q=85') center center / cover no-repeat;
+      min-height: 100svh;
+      background: url('https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1600&q=85') center/cover no-repeat;
       position: relative;
       display: flex;
       align-items: center;
@@ -182,345 +225,380 @@
       text-align: center;
     }
     .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(61,44,44,0.30) 0%,
-        rgba(61,44,44,0.48) 55%,
-        rgba(61,44,44,0.68) 100%
-      );
+      position: absolute; inset: 0;
+      background: linear-gradient(155deg, rgba(155,27,27,0.52) 0%, rgba(28,16,8,0.72) 60%, rgba(28,16,8,0.88) 100%);
     }
     .hero-content {
       position: relative;
       z-index: 1;
-      color: #fff;
-      padding: 2rem;
-      max-width: 780px;
+      color: var(--bg);
+      padding: 2rem 1.5rem;
+      max-width: 820px;
     }
     .hero-eyebrow {
-      font-size: 0.78rem;
+      font-size: 0.7rem;
       font-weight: 500;
-      letter-spacing: 0.45em;
+      letter-spacing: 0.5em;
       text-transform: uppercase;
-      color: #D4AF7A;
-      margin-bottom: 1.4rem;
+      color: var(--gold-lt);
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '◆';
+      font-size: 0.45rem;
+      color: var(--gold);
+      opacity: 0.8;
     }
     .hero-content h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 7.5vw, 6.2rem);
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 8vw, 6rem);
       font-weight: 300;
-      line-height: 1.12;
-      letter-spacing: 0.01em;
-      margin-bottom: 1.6rem;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 28px rgba(28,16,8,0.4);
     }
-    .hero-subtitle {
-      font-size: 1.05rem;
+    .hero-chinese {
+      display: block;
+      font-family: var(--font-disp);
+      font-size: clamp(0.95rem, 2.2vw, 1.3rem);
+      color: var(--gold-lt);
+      letter-spacing: 0.5em;
+      margin-bottom: 1.4rem;
+      opacity: 0.88;
+    }
+    .hero-sub {
+      font-size: clamp(0.88rem, 2vw, 1.02rem);
       font-weight: 300;
       letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.88);
+      color: rgba(253,246,236,0.8);
       margin-bottom: 2.6rem;
-      line-height: 1.8;
+      line-height: 1.9;
     }
+    .hero-cta { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
     .hero-scroll {
       position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
+      bottom: 2rem; left: 50%;
       transform: translateX(-50%);
       z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      color: rgba(255,255,255,0.6);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
+      color: rgba(253,246,236,0.5);
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      animation: bounce 2.4s infinite;
+      animation: drift 2.6s ease-in-out infinite;
     }
-    .hero-scroll svg { width: 20px; height: 20px; }
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
+    .hero-scroll svg { width: 17px; height: 17px; }
+    @keyframes drift {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: .5; }
+      50%       { transform: translateX(-50%) translateY(7px); opacity: .85; }
     }
 
-    /* ── About ─────────────────────────────────────────────── */
-    #about { padding: 7rem 0; background: #FFFAF6; }
+    /* ── About ──────────────────────────────────────────────── */
+    #about { padding: 7rem 0; background: var(--bg); }
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
       align-items: center;
     }
-    .about-image-wrap {
-      position: relative;
-    }
-    .about-image-wrap::after {
+    .about-img-wrap { position: relative; }
+    .about-img-wrap::before {
       content: '';
       position: absolute;
-      inset: 20px -20px -20px 20px;
-      border: 1px solid #F2C4CE;
-      z-index: 0;
+      inset: -14px;
+      border: 1px solid var(--gold);
+      opacity: 0.35;
       pointer-events: none;
     }
-    .about-image-wrap img {
+    .about-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+    .about-img-wrap img {
       position: relative;
       z-index: 1;
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 4/5;
       object-fit: cover;
+    }
+    .about-seal {
+      position: absolute;
+      bottom: -18px; right: -18px;
+      z-index: 2;
+      width: 56px; height: 56px;
+      background: var(--red);
+      border: 2px solid var(--red-dk);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-disp);
+      font-size: 1.7rem;
+      color: var(--bg);
+      line-height: 1;
     }
     .about-text { padding-right: 1rem; }
     .about-text h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       font-weight: 300;
-      margin-bottom: 1.4rem;
-      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      line-height: 1.25;
     }
     .about-text p {
-      color: #7A6A6A;
+      color: var(--muted);
       margin-bottom: 1.2rem;
-      font-size: 0.97rem;
-      line-height: 1.85;
+      font-size: 0.94rem;
+      line-height: 1.9;
+      font-weight: 300;
     }
-    .about-text .btn-outline { margin-top: 0.8rem; }
     .about-stats {
       display: flex;
-      gap: 2.5rem;
-      margin: 2rem 0 2.4rem;
-      padding: 1.5rem 0;
-      border-top: 1px solid #F2C4CE;
-      border-bottom: 1px solid #F2C4CE;
+      gap: 2rem;
+      margin: 1.6rem 0 2rem;
+      padding: 1.4rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
-    .stat-item { text-align: center; }
-    .stat-number {
+    .stat-item { text-align: center; flex: 1; }
+    .stat-num {
       display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem;
+      font-family: var(--font-head);
+      font-size: 2.2rem;
       font-weight: 300;
-      color: #C9956C;
+      color: var(--red);
       line-height: 1;
     }
-    .stat-label {
-      font-size: 0.72rem;
+    .stat-lbl {
+      font-size: 0.67rem;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #7A6A6A;
+      color: var(--muted);
       margin-top: 0.4rem;
       display: block;
     }
 
-    /* ── Packages ──────────────────────────────────────────── */
-    #packages { padding: 7rem 0; background: #FDF0F0; }
-    .packages-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
+    /* ── Packages ───────────────────────────────────────────── */
+    #packages {
+      padding: 7rem 0;
+      background: var(--bg-alt);
+      background-image:
+        linear-gradient(rgba(192,57,43,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192,57,43,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
     }
-    .packages-header .section-subtitle { margin: 0 auto; }
-    .packages-grid {
+    .pkg-header { text-align: center; margin-bottom: 3.5rem; }
+    .pkg-header .section-subtitle { margin: 0 auto; }
+    .pkg-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      gap: 1.8rem;
       align-items: start;
     }
-    .package-card {
-      background: #fff;
-      border: 1px solid #F2C4CE;
-      border-radius: 3px;
+    .pkg-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
       padding: 2.8rem 2rem 2.4rem;
       text-align: center;
       position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.35s, box-shadow 0.35s;
     }
-    .package-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 24px 55px rgba(201,149,108,0.16);
-    }
-    .package-card.featured {
-      border-color: #C9956C;
-      background: linear-gradient(160deg, #fff 0%, #FDF0F0 100%);
-      transform: translateY(-6px);
-      box-shadow: 0 16px 45px rgba(201,149,108,0.14);
-    }
-    .package-card.featured:hover { transform: translateY(-14px); }
-    .package-badge {
+    .pkg-card::before {
+      content: '';
       position: absolute;
-      top: -15px;
-      left: 50%;
+      top: 7px; right: 7px; bottom: 7px; left: 7px;
+      border: 1px solid rgba(201,168,76,0.14);
+      pointer-events: none;
+    }
+    .pkg-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(155,27,27,0.12);
+    }
+    .pkg-card.featured {
+      border-color: var(--red);
+      background: linear-gradient(160deg, #FFF5EE 0%, var(--bg) 100%);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(155,27,27,0.1);
+    }
+    .pkg-card.featured:hover { transform: translateY(-12px); }
+    .pkg-badge {
+      position: absolute;
+      top: -14px; left: 50%;
       transform: translateX(-50%);
-      background: #C9956C;
-      color: #fff;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
+      background: var(--red);
+      color: var(--bg);
+      font-size: 0.63rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      padding: 0.35rem 1.3rem;
-      border-radius: 20px;
+      padding: 0.3rem 1.3rem;
       white-space: nowrap;
     }
-    .package-icon {
-      font-size: 2rem;
+    .pkg-icon {
+      font-family: var(--font-disp);
+      font-size: 2.2rem;
+      color: var(--red);
       display: block;
-      margin-bottom: 0.8rem;
-    }
-    .package-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem;
-      font-weight: 400;
-      color: #3D2C2C;
-      margin-bottom: 0.3rem;
-    }
-    .package-tagline {
-      font-size: 0.8rem;
-      color: #7A6A6A;
-      letter-spacing: 0.08em;
-      margin-bottom: 1.2rem;
-    }
-    .package-price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.2rem;
-      font-weight: 300;
-      color: #C9956C;
+      margin-bottom: 0.7rem;
       line-height: 1;
-      margin-bottom: 0.3rem;
     }
-    .package-price-note {
-      font-size: 0.75rem;
-      color: #7A6A6A;
-      margin-bottom: 1.8rem;
+    .pkg-name {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.2rem;
     }
-    .package-divider {
-      width: 40px;
-      height: 1px;
-      background: #F2C4CE;
-      margin: 0 auto 1.8rem;
+    .pkg-tagline {
+      font-size: 0.76rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.1rem;
+      font-weight: 300;
     }
-    .package-features {
-      text-align: left;
-      margin-bottom: 2rem;
+    .pkg-price {
+      font-family: var(--font-head);
+      font-size: 2.9rem;
+      font-weight: 300;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 0.2rem;
     }
-    .package-features li {
-      font-size: 0.88rem;
-      color: #7A6A6A;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(242,196,206,0.5);
+    .pkg-note {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 1.7rem;
+      font-weight: 300;
+    }
+    .pkg-div {
+      width: 48px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto 1.7rem;
+    }
+    .pkg-feats { text-align: left; margin-bottom: 2rem; }
+    .pkg-feats li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 0.48rem 0;
+      border-bottom: 1px solid rgba(212,160,160,0.28);
       display: flex;
-      align-items: center;
-      gap: 0.7rem;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-weight: 300;
+      line-height: 1.5;
     }
-    .package-features li:last-child { border-bottom: none; }
-    .feature-check {
+    .pkg-feats li:last-child { border-bottom: none; }
+    .chk {
       flex-shrink: 0;
-      width: 16px;
-      height: 16px;
-      color: #C9956C;
+      width: 14px; height: 14px;
+      color: var(--red);
+      margin-top: 2px;
     }
-    .btn-package {
+    .btn-pkg {
       display: block;
       width: 100%;
       padding: 0.9rem;
       text-align: center;
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
+      font-family: var(--font-body);
+      font-size: 0.73rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.25s ease;
+      border-radius: 1px;
+      transition: all 0.28s;
     }
-    .btn-package-outline {
-      border: 1.5px solid #C9956C;
-      color: #C9956C;
+    .btn-pkg-out {
+      border: 1px solid var(--red);
+      color: var(--red);
       background: transparent;
     }
-    .btn-package-outline:hover { background: #C9956C; color: #fff; }
-    .btn-package-solid {
-      background: #C9956C;
-      color: #fff;
-      border: 1.5px solid #C9956C;
+    .btn-pkg-out:hover { background: var(--red); color: var(--bg); }
+    .btn-pkg-solid {
+      background: var(--red);
+      color: var(--bg);
+      border: 1px solid var(--red);
     }
-    .btn-package-solid:hover { background: #A0706A; border-color: #A0706A; }
+    .btn-pkg-solid:hover { background: var(--red-dk); border-color: var(--red-dk); }
 
-    /* ── Gallery ───────────────────────────────────────────── */
-    #gallery { padding: 7rem 0; background: #FFFAF6; }
-    .gallery-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .gallery-grid {
+    /* ── Gallery ────────────────────────────────────────────── */
+    #gallery { padding: 7rem 0; background: var(--bg); }
+    .gallery-hd { text-align: center; margin-bottom: 3rem; }
+    .gal-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-auto-rows: 280px;
-      gap: 10px;
+      gap: 8px;
     }
-    .gallery-item { overflow: hidden; position: relative; }
-    .gallery-item:nth-child(1) { grid-column: span 2; }
-    .gallery-item:nth-child(6) { grid-column: span 2; }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
+    .gal-item { overflow: hidden; position: relative; }
+    .gal-item:nth-child(1) { grid-column: span 2; }
+    .gal-item:nth-child(6) { grid-column: span 2; }
+    .gal-item img {
+      width: 100%; height: 100%;
       object-fit: cover;
-      transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94),
-                  filter 0.45s ease;
-      filter: brightness(0.94) saturate(1.05);
+      transition: transform 0.7s cubic-bezier(.25,.46,.45,.94), filter 0.5s;
+      filter: brightness(0.92) saturate(1.1);
     }
-    .gallery-item:hover img {
-      transform: scale(1.07);
-      filter: brightness(1.02) saturate(1.12);
-    }
-    .gallery-item::after {
+    .gal-item:hover img { transform: scale(1.06); filter: brightness(1) saturate(1.18); }
+    .gal-item::after {
       content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(61,44,44,0);
-      transition: background 0.4s ease;
+      position: absolute; inset: 0;
+      background: rgba(192,57,43,0);
+      transition: background 0.45s;
       pointer-events: none;
     }
-    .gallery-item:hover::after { background: rgba(61,44,44,0.06); }
+    .gal-item:hover::after { background: rgba(192,57,43,0.07); }
 
-    /* ── Booking Form ──────────────────────────────────────── */
-    #booking { padding: 7rem 0; background: #FDF0F0; }
-    .booking-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-    .booking-header .section-subtitle { margin: 0.8rem auto 0; }
-    .booking-wrap {
-      max-width: 820px;
-      margin: 0 auto;
-    }
+    /* ── Booking ────────────────────────────────────────────── */
+    #booking { padding: 7rem 0; background: var(--bg-alt); }
+    .bk-header { text-align: center; margin-bottom: 3.5rem; }
+    .bk-header .section-subtitle { margin: 0.8rem auto 0; }
+    .bk-wrap { max-width: 820px; margin: 0 auto; }
     .success-banner {
-      background: #D4EDDA;
-      color: #2D6A4F;
-      border: 1px solid #A8D5B5;
-      border-radius: 4px;
+      background: rgba(78,124,107,0.1);
+      color: var(--jade);
+      border: 1px solid rgba(78,124,107,0.28);
       padding: 2rem 2.5rem;
       text-align: center;
-      font-size: 1.05rem;
+      font-size: 1rem;
       line-height: 1.7;
     }
     .success-banner strong {
       display: block;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: var(--font-head);
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
     }
     .error-banner {
-      background: #FDECEA;
-      color: #C0392B;
-      border: 1px solid #F5C6CB;
-      border-radius: 4px;
-      padding: 1.1rem 1.6rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
+      background: rgba(192,57,43,0.08);
+      color: var(--red);
+      border: 1px solid rgba(192,57,43,0.22);
+      padding: 1rem 1.4rem;
+      margin-bottom: 1.4rem;
+      font-size: 0.88rem;
     }
     #booking-form {
-      background: #fff;
-      border: 1px solid #F2C4CE;
-      border-radius: 3px;
+      background: var(--bg);
+      border: 1px solid var(--border);
       padding: 3rem;
+      position: relative;
+    }
+    #booking-form::before {
+      content: '';
+      position: absolute;
+      top: 8px; right: 8px; bottom: 8px; left: 8px;
+      border: 1px solid rgba(201,168,76,0.1);
+      pointer-events: none;
     }
     .form-row {
       display: grid;
@@ -531,55 +609,48 @@
     .form-group { display: flex; flex-direction: column; }
     .form-group.full-width { margin-bottom: 1.5rem; }
     .form-group label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      font-size: 0.67rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #7A6A6A;
-      margin-bottom: 0.55rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
     }
-    .form-group label .req { color: #C9956C; margin-left: 2px; }
+    .form-group label .req { color: var(--red); margin-left: 2px; }
     .form-group input,
     .form-group select,
     .form-group textarea {
       width: 100%;
-      padding: 0.85rem 1.1rem;
-      border: 1px solid #F2C4CE;
-      border-radius: 2px;
-      background: #FFFAF6;
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.92rem;
-      color: #3D2C2C;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      background: var(--bg);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: border-color 0.25s, box-shadow 0.25s;
       outline: none;
       appearance: none;
       -webkit-appearance: none;
     }
     .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9956C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 1rem center;
+      background-color: var(--bg);
       padding-right: 2.5rem;
     }
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: #C9956C;
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(201,149,108,0.12);
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
     }
     .form-group input::placeholder,
-    .form-group textarea::placeholder { color: #b8a8a8; }
+    .form-group textarea::placeholder { color: #b8a8a0; }
     .form-group textarea { resize: vertical; line-height: 1.7; }
-    .form-submit-wrap {
-      margin-top: 2rem;
-      text-align: center;
-    }
-    .btn-submit {
-      min-width: 260px;
-      font-size: 0.82rem;
-      padding: 1.1rem 3rem;
-    }
+    .form-submit { margin-top: 2rem; text-align: center; }
+    .btn-submit { min-width: 260px; font-size: 0.78rem; padding: 1.1rem 3rem; }
     .btn-submit:disabled {
       background: #c5b5ad;
       cursor: not-allowed;
@@ -588,192 +659,186 @@
     }
     .form-note {
       margin-top: 1.2rem;
-      font-size: 0.78rem;
-      color: #b8a8a8;
+      font-size: 0.75rem;
+      color: #b8a8a0;
       text-align: center;
     }
 
-    /* ── Contact ───────────────────────────────────────────── */
-    #contact { padding: 6rem 0; background: #3D2C2C; color: #FFFAF6; }
-    .contact-grid {
+    /* ── Contact ────────────────────────────────────────────── */
+    #contact {
+      padding: 6rem 0;
+      background: var(--lacquer);
+      color: var(--bg);
+      background-image:
+        linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .ct-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
       align-items: start;
     }
-    #contact .section-label { color: #D4AF7A; }
+    #contact .section-label { color: var(--gold); }
     #contact h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       font-weight: 300;
-      color: #FFFAF6;
+      color: var(--bg);
       margin-bottom: 2rem;
-      line-height: 1.2;
+      line-height: 1.25;
     }
-    .contact-items { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2.5rem; }
-    .contact-item {
+    .ct-items { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2.4rem; }
+    .ct-item {
       display: flex;
       align-items: flex-start;
       gap: 1rem;
-      font-size: 0.92rem;
-      color: rgba(255,250,246,0.8);
+      font-size: 0.9rem;
+      color: rgba(253,246,236,0.72);
       line-height: 1.6;
+      font-weight: 300;
     }
-    .contact-item-icon {
+    .ct-icon {
       flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      color: #D4AF7A;
+      width: 18px; height: 18px;
+      color: var(--gold);
       margin-top: 2px;
     }
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
+    .social-links { display: flex; gap: 0.8rem; margin-top: 0.5rem; }
     .social-link {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 42px;
-      height: 42px;
-      border: 1px solid rgba(212,175,122,0.4);
-      border-radius: 50%;
-      color: #D4AF7A;
-      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+      width: 44px; height: 44px;
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+      transition: background 0.28s, border-color 0.28s, color 0.28s;
     }
-    .social-link:hover {
-      background: #D4AF7A;
-      border-color: #D4AF7A;
-      color: #3D2C2C;
-    }
-    .social-link svg { width: 18px; height: 18px; }
-    .contact-right h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
+    .social-link:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    .social-link svg { width: 17px; height: 17px; }
+    .ct-right h3 {
+      font-family: var(--font-head);
+      font-size: 1.4rem;
       font-weight: 400;
-      color: #FFFAF6;
-      margin-bottom: 1.5rem;
+      color: var(--bg);
+      margin-bottom: 1.4rem;
     }
     .hours-table { width: 100%; border-collapse: collapse; }
-    .hours-table tr { border-bottom: 1px solid rgba(242,196,206,0.2); }
+    .hours-table tr { border-bottom: 1px solid rgba(201,168,76,0.13); }
     .hours-table tr:last-child { border-bottom: none; }
     .hours-table td {
       padding: 0.7rem 0;
-      font-size: 0.88rem;
-      color: rgba(255,250,246,0.75);
+      font-size: 0.85rem;
+      color: rgba(253,246,236,0.68);
+      font-weight: 300;
     }
-    .hours-table td:last-child { text-align: right; color: rgba(255,250,246,0.55); }
-    .contact-quote {
+    .hours-table td:last-child { text-align: right; color: rgba(253,246,236,0.42); }
+    .ct-quote {
       margin-top: 2.5rem;
       padding-top: 2rem;
-      border-top: 1px solid rgba(242,196,206,0.2);
+      border-top: 1px solid rgba(201,168,76,0.18);
     }
-    .contact-quote blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
+    .ct-quote blockquote {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
       font-style: italic;
       font-weight: 300;
-      color: rgba(255,250,246,0.7);
-      line-height: 1.6;
+      color: rgba(253,246,236,0.62);
+      line-height: 1.75;
     }
-    .contact-quote cite {
+    .ct-quote cite {
       display: block;
       margin-top: 0.8rem;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-style: normal;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #D4AF7A;
+      color: var(--gold);
     }
 
-    /* ── Footer ────────────────────────────────────────────── */
-    #footer { padding: 2rem 0; background: #2A1F1F; }
-    .footer-inner {
+    /* ── Footer ─────────────────────────────────────────────── */
+    #footer {
+      padding: 2rem 0;
+      background: var(--ink);
+      border-top: 1px solid rgba(201,168,76,0.14);
+    }
+    .ft-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
     }
-    #footer .logo { font-size: 1.3rem; color: rgba(255,250,246,0.6); }
-    .footer-copy {
-      font-size: 0.75rem;
-      color: rgba(255,250,246,0.35);
-      letter-spacing: 0.05em;
-    }
-    .footer-nav { display: flex; gap: 2rem; }
-    .footer-nav a {
-      font-size: 0.72rem;
+    #footer .logo { font-size: 1.5rem; color: rgba(253,246,236,0.45); }
+    .ft-copy { font-size: 0.7rem; color: rgba(253,246,236,0.28); letter-spacing: 0.05em; font-weight: 300; }
+    .ft-nav { display: flex; gap: 1.8rem; }
+    .ft-nav a {
+      font-size: 0.68rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,250,246,0.4);
-      transition: color 0.2s ease;
+      color: rgba(253,246,236,0.32);
+      transition: color 0.2s;
     }
-    .footer-nav a:hover { color: #D4AF7A; }
+    .ft-nav a:hover { color: var(--gold); }
 
-    /* ── Mobile nav open state ─────────────────────────────── */
+    /* ── Mobile nav ─────────────────────────────────────────── */
     @media (max-width: 860px) {
       .hamburger { display: block; }
       .nav-links {
         display: none;
         position: absolute;
         top: 100%; left: 0; right: 0;
-        background: rgba(255,250,246,0.98);
-        backdrop-filter: blur(14px);
+        background: rgba(253,246,236,0.98);
+        backdrop-filter: blur(16px);
         flex-direction: column;
         gap: 0;
-        padding: 1rem 0;
-        border-bottom: 1px solid #F2C4CE;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border);
       }
       .nav-links.nav-open { display: flex; }
       .nav-links a {
-        padding: 0.85rem 2rem;
-        font-size: 0.8rem;
-        border-bottom: 1px solid rgba(242,196,206,0.3);
+        padding: 0.85rem 1.5rem;
+        font-size: 0.78rem;
+        border-bottom: 1px solid rgba(212,160,160,0.22);
       }
       .nav-links a:last-child { border-bottom: none; }
-      .nav-links .nav-book {
-        margin: 0.5rem 2rem;
-        padding: 0.7rem 2rem;
-        text-align: center;
-      }
+      .nav-book { margin: 0.5rem 1.5rem !important; padding: 0.7rem 1.5rem !important; text-align: center; }
     }
 
-    /* ── Responsive ────────────────────────────────────────── */
+    /* ── Responsive ─────────────────────────────────────────── */
     @media (max-width: 960px) {
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .about-text { padding-right: 0; }
-      .packages-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
-      .package-card.featured { transform: translateY(0); }
-      .package-card.featured:hover { transform: translateY(-10px); }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item:nth-child(1) { grid-column: span 2; }
-      .gallery-item:nth-child(6) { grid-column: span 1; }
-      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-text { padding-right: 0; order: -1; }
+      .pkg-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .pkg-card.featured { transform: translateY(0); }
+      .pkg-card.featured:hover { transform: translateY(-8px); }
+      .gal-grid { grid-template-columns: repeat(2, 1fr); }
+      .gal-item:nth-child(1) { grid-column: span 2; }
+      .gal-item:nth-child(6) { grid-column: span 1; }
+      .ct-grid { grid-template-columns: 1fr; gap: 3rem; }
     }
     @media (max-width: 600px) {
-      .hero-content h1 { font-size: 2.8rem; }
-      .hero-subtitle { font-size: 0.92rem; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-item:nth-child(1),
-      .gallery-item:nth-child(6) { grid-column: span 1; }
-      .gallery-grid { grid-auto-rows: 220px; }
+      .hero-content h1 { font-size: 2.6rem; }
+      .hero-sub { font-size: 0.86rem; }
+      .hero-cta { flex-direction: column; align-items: center; }
+      .gal-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+      .gal-item:nth-child(1), .gal-item:nth-child(6) { grid-column: span 1; }
       .form-row { grid-template-columns: 1fr; }
-      #booking-form { padding: 2rem 1.5rem; }
-      .about-stats { flex-wrap: wrap; gap: 1.5rem; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .footer-nav { flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
+      #booking-form { padding: 2rem 1.2rem; }
+      .about-stats { flex-wrap: wrap; gap: 1.2rem; }
+      .ft-inner { flex-direction: column; text-align: center; }
+      .ft-nav { flex-wrap: wrap; justify-content: center; gap: 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── Navigation ───────────────────────────────────────── -->
+  <!-- Navbar -->
   <nav id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <a href="#hero" class="logo">Lumière</a>
+      <a href="#hero" class="logo">映月</a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#packages">Packages</a></li>
@@ -781,18 +846,26 @@
         <li><a href="#contact">Contact</a></li>
         <li><a href="#booking" class="nav-book">Book Now</a></li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
     </div>
   </nav>
 
-  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <!-- Hero -->
   <section id="hero" aria-label="Hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <span class="hero-eyebrow">Bridal Photography</span>
+      <span class="hero-eyebrow">婚禮攝影 · Bridal Photography</span>
       <h1>Your Love Story,<br>Beautifully Told</h1>
-      <p class="hero-subtitle">Timeless, intimate wedding photography<br>crafted for the modern romantic couple.</p>
-      <a href="#booking" class="btn-primary">Book Your Session</a>
+      <span class="hero-chinese">永結同心 · 愛如朝露</span>
+      <p class="hero-sub">Timeless, intimate wedding photography<br>crafted with the grace of oriental tradition.</p>
+      <div class="hero-cta">
+        <a href="#booking" class="btn-primary">預約攝影 · Book Now</a>
+        <a href="#gallery" class="btn-outline">View Gallery</a>
+      </div>
     </div>
     <div class="hero-scroll" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -800,211 +873,133 @@
     </div>
   </section>
 
-  <!-- ── About ─────────────────────────────────────────────── -->
+  <!-- About -->
   <section id="about" aria-label="About">
     <div class="container">
       <div class="about-grid">
-        <div class="about-image-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80"
-            alt="Sophia Laurent, lead photographer"
-            loading="lazy"
-          >
+        <div class="about-img-wrap reveal">
+          <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&q=80" alt="Sophia Laurent, lead photographer" loading="lazy">
+          <div class="about-seal" aria-hidden="true">緣</div>
         </div>
-        <div class="about-text">
-          <span class="section-label">About the Photographer</span>
+        <div class="about-text reveal d1">
+          <span class="section-label">關於攝影師 · About the Photographer</span>
           <h2>Hello, I'm<br>Sophia Laurent</h2>
+          <div class="ornament" aria-hidden="true"><span>❋</span></div>
           <div class="about-stats">
-            <div class="stat-item">
-              <span class="stat-number">12+</span>
-              <span class="stat-label">Years</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">380+</span>
-              <span class="stat-label">Weddings</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">28</span>
-              <span class="stat-label">Countries</span>
-            </div>
+            <div class="stat-item"><span class="stat-num">12+</span><span class="stat-lbl">Years</span></div>
+            <div class="stat-item"><span class="stat-num">380+</span><span class="stat-lbl">Weddings</span></div>
+            <div class="stat-item"><span class="stat-num">28</span><span class="stat-lbl">Countries</span></div>
           </div>
           <p>I believe every love story deserves to be seen in its most honest, luminous form. My approach blends documentary instinct with fine-art sensibility — capturing the fleeting glances, the quiet laughter, the tears of joy that make your wedding uniquely yours.</p>
-          <p>Based in New York and available worldwide, I travel wherever your heart leads. Whether an intimate garden ceremony or a grand ballroom celebration, I bring the same depth of care and artistry to every frame.</p>
+          <p>Drawing inspiration from the elegance of Eastern tradition, I weave harmony and poetry into every frame. Based in New York and available worldwide, I bring the same depth of care wherever your heart leads.</p>
           <a href="#booking" class="btn-outline">Work With Me</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Packages ──────────────────────────────────────────── -->
+  <!-- Packages -->
   <section id="packages" aria-label="Photography packages">
     <div class="container">
-      <div class="packages-header">
-        <span class="section-label">Investment</span>
+      <div class="pkg-header reveal">
+        <span class="section-label">套餐 · Investment</span>
         <h2 class="section-title">Photography Packages</h2>
+        <div class="ornament" aria-hidden="true"><span>囍</span></div>
         <p class="section-subtitle">Thoughtfully designed to suit every celebration, from intimate elopements to grand affairs.</p>
       </div>
-      <div class="packages-grid">
+      <div class="pkg-grid">
 
-        <!-- Pearl -->
-        <div class="package-card">
-          <span class="package-icon">🤍</span>
-          <h3 class="package-name">Pearl</h3>
-          <p class="package-tagline">The perfect beginning</p>
-          <div class="package-price">$1,200</div>
-          <p class="package-price-note">Starting from</p>
-          <div class="package-divider"></div>
-          <ul class="package-features">
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              4 hours of coverage
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              1 lead photographer
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              300+ edited digital photos
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Private online gallery (2 weeks)
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Full print release included
-            </li>
+        <div class="pkg-card reveal">
+          <span class="pkg-icon">珍</span>
+          <h3 class="pkg-name">Pearl</h3>
+          <p class="pkg-tagline">The perfect beginning</p>
+          <div class="pkg-price">$1,200</div>
+          <p class="pkg-note">Starting from</p>
+          <div class="pkg-div"></div>
+          <ul class="pkg-feats">
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>4 hours of coverage</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>1 lead photographer</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>300+ edited digital photos</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Private online gallery (2 weeks)</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Full print release included</li>
           </ul>
-          <a href="#booking" class="btn-package btn-package-outline">Select Pearl</a>
+          <a href="#booking" class="btn-pkg btn-pkg-out">Select Pearl</a>
         </div>
 
-        <!-- Rose Gold (featured) -->
-        <div class="package-card featured">
-          <div class="package-badge">Most Popular</div>
-          <span class="package-icon">🌹</span>
-          <h3 class="package-name">Rose Gold</h3>
-          <p class="package-tagline">The complete experience</p>
-          <div class="package-price">$2,400</div>
-          <p class="package-price-note">All-day coverage</p>
-          <div class="package-divider"></div>
-          <ul class="package-features">
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              8 hours of full-day coverage
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Lead + second photographer
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              600+ edited digital photos
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              1-hour engagement session
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              USB drive + online gallery
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Album design consultation
-            </li>
+        <div class="pkg-card featured reveal d1">
+          <div class="pkg-badge">Most Popular</div>
+          <span class="pkg-icon">玫</span>
+          <h3 class="pkg-name">Rose Gold</h3>
+          <p class="pkg-tagline">The complete experience</p>
+          <div class="pkg-price">$2,400</div>
+          <p class="pkg-note">All-day coverage</p>
+          <div class="pkg-div"></div>
+          <ul class="pkg-feats">
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>8 hours of full-day coverage</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Lead + second photographer</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>600+ edited digital photos</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>1-hour engagement session</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>USB drive + online gallery</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Album design consultation</li>
           </ul>
-          <a href="#booking" class="btn-package btn-package-solid">Select Rose Gold</a>
+          <a href="#booking" class="btn-pkg btn-pkg-solid">Select Rose Gold</a>
         </div>
 
-        <!-- Gold -->
-        <div class="package-card">
-          <span class="package-icon">✨</span>
-          <h3 class="package-name">Gold</h3>
-          <p class="package-tagline">The ultimate collection</p>
-          <div class="package-price">$3,800</div>
-          <p class="package-price-note">Full weekend experience</p>
-          <div class="package-divider"></div>
-          <ul class="package-features">
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Rehearsal dinner + wedding day
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              2 photographers throughout
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              1,000+ edited digital photos
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Engagement + bridal portrait session
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Premium 30-page flush-mount album
-            </li>
-            <li>
-              <svg class="feature-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              Same-day 10-photo preview slideshow
-            </li>
+        <div class="pkg-card reveal d2">
+          <span class="pkg-icon">金</span>
+          <h3 class="pkg-name">Gold</h3>
+          <p class="pkg-tagline">The ultimate collection</p>
+          <div class="pkg-price">$3,800</div>
+          <p class="pkg-note">Full weekend experience</p>
+          <div class="pkg-div"></div>
+          <ul class="pkg-feats">
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Rehearsal dinner + wedding day</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>2 photographers throughout</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>1,000+ edited digital photos</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Engagement + bridal portrait session</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Premium 30-page flush-mount album</li>
+            <li><svg class="chk" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Same-day 10-photo preview slideshow</li>
           </ul>
-          <a href="#booking" class="btn-package btn-package-outline">Select Gold</a>
+          <a href="#booking" class="btn-pkg btn-pkg-out">Select Gold</a>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ── Gallery ────────────────────────────────────────────── -->
+  <!-- Gallery -->
   <section id="gallery" aria-label="Portfolio gallery">
     <div class="container">
-      <div class="gallery-header">
-        <span class="section-label">Portfolio</span>
-        <h2 class="section-title">Recent Weddings</h2>
+      <div class="gallery-hd reveal">
+        <span class="section-label">作品集 · Portfolio</span>
+        <h2 class="section-title">Recent Celebrations</h2>
+        <div class="ornament" aria-hidden="true"><span>◆</span></div>
       </div>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1606216794074-735ab1b8b93e?w=900&q=80" alt="Couple dancing at golden hour" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80" alt="Bridal bouquet detail" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=600&q=80" alt="Ceremony aisle with floral arch" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1591604129664-69ede984db04?w=600&q=80" alt="Wedding rings on florals" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1519225421980-bff01f81f049?w=600&q=80" alt="Couple in confetti shower" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1507914997283-3d64aef3e66d?w=900&q=80" alt="Elegant tiered wedding cake" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1488278905738-514111aa236b?w=600&q=80" alt="Bride getting ready, mirror reflection" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1469371851696-ac9c77c53e4b?w=600&q=80" alt="Reception table with candles and florals" loading="lazy">
-        </div>
+      <div class="gal-grid">
+        <div class="gal-item"><img src="https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=900&q=80" alt="Red lanterns illuminating the wedding night" loading="lazy"></div>
+        <div class="gal-item"><img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?w=600&q=80" alt="Cherry blossom ceremony" loading="lazy"></div>
+        <div class="gal-item"><img src="https://images.unsplash.com/photo-1537519646099-335112f03225?w=600&q=80" alt="Chinese temple ceremony" loading="lazy"></div>
+        <div class="gal-item"><img src="https://images.unsplash.com/photo-1510784722466-f2aa240c4b35?w=600&q=80" alt="Misty mountain wedding backdrop" loading="lazy"></div>
+        <div class="gal-item"><img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=600&q=80" alt="Traditional Chinese architecture" loading="lazy"></div>
+        <div class="gal-item"><img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=900&q=80" alt="Great Wall wedding portrait" loading="lazy"></div>
+        <div class="gal-item"><img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&q=80" alt="Ink painting calligraphy detail" loading="lazy"></div>
+        <div class="gal-item"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80" alt="Red paper lanterns street" loading="lazy"></div>
       </div>
     </div>
   </section>
 
-  <!-- ── Booking Form ───────────────────────────────────────── -->
+  <!-- Booking -->
   <section id="booking" aria-label="Booking inquiry form">
     <div class="container">
-      <div class="booking-header">
-        <span class="section-label">Let's Connect</span>
+      <div class="bk-header reveal">
+        <span class="section-label">預約 · Let's Connect</span>
         <h2 class="section-title">Book Your Session</h2>
+        <div class="ornament" aria-hidden="true"><span>喜</span></div>
         <p class="section-subtitle">Tell me about your wedding day and I'll get back to you within 24 hours to discuss availability and details.</p>
       </div>
-      <div class="booking-wrap">
+      <div class="bk-wrap reveal d1">
         <div id="booking-success" class="success-banner" hidden aria-live="polite">
-          <strong>Thank you for reaching out! 🌸</strong>
+          <strong>謝謝您 · Thank you for reaching out!</strong>
           Your inquiry has been received. Sophia will be in touch within 24 hours to discuss your special day.
         </div>
         <div id="booking-error" class="error-banner" hidden aria-live="assertive"></div>
@@ -1059,8 +1054,8 @@
             <label for="message">Tell Me About Your Vision</label>
             <textarea id="message" name="message" rows="5" placeholder="Share your wedding theme, style preferences, must-have shots, or anything you'd like me to know…"></textarea>
           </div>
-          <div class="form-submit-wrap">
-            <button type="submit" class="btn-primary btn-submit" id="submit-btn">Send My Inquiry</button>
+          <div class="form-submit">
+            <button type="submit" class="btn-primary btn-submit" id="submit-btn">送出詢問 · Send My Inquiry</button>
             <p class="form-note">Your details are kept private and used only to respond to your inquiry.</p>
           </div>
         </form>
@@ -1068,53 +1063,39 @@
     </div>
   </section>
 
-  <!-- ── Contact ────────────────────────────────────────────── -->
+  <!-- Contact -->
   <section id="contact" aria-label="Contact information">
-    <div class="container contact-grid">
-      <div class="contact-left">
-        <span class="section-label">Find Us</span>
+    <div class="container ct-grid">
+      <div class="ct-left reveal">
+        <span class="section-label">聯繫我們 · Find Us</span>
         <h2>Get In Touch</h2>
-        <div class="contact-items">
-          <div class="contact-item">
-            <svg class="contact-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 21C12 21 5 14 5 9a7 7 0 0114 0c0 5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/>
-            </svg>
+        <div class="ct-items">
+          <div class="ct-item">
+            <svg class="ct-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C12 21 5 14 5 9a7 7 0 0114 0c0 5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
             <span>123 Blossom Lane, Studio 4<br>New York, NY 10001</span>
           </div>
-          <div class="contact-item">
-            <svg class="contact-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.16 6.16l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-            </svg>
+          <div class="ct-item">
+            <svg class="ct-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.16 6.16l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             <span>+1 (212) 555-0178</span>
           </div>
-          <div class="contact-item">
-            <svg class="contact-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/>
-            </svg>
+          <div class="ct-item">
+            <svg class="ct-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
             <span>hello@lumierebridal.com</span>
           </div>
         </div>
         <div class="social-links">
           <a href="#" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="2" width="20" height="20" rx="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
           </a>
           <a href="#" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow on Pinterest">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.19-.77 1.28-5.43 1.28-5.43s-.33-.65-.33-1.62c0-1.52.88-2.65 1.98-2.65.93 0 1.39.7 1.39 1.54 0 .94-.6 2.34-.91 3.64-.26 1.09.54 1.97 1.6 1.97 1.92 0 3.4-2.02 3.4-4.94 0-2.58-1.86-4.39-4.51-4.39-3.07 0-4.87 2.3-4.87 4.68 0 .93.36 1.92.8 2.46.09.11.1.2.08.31-.08.34-.27 1.09-.3 1.24-.05.2-.16.24-.38.14-1.39-.65-2.26-2.68-2.26-4.32 0-3.51 2.55-6.74 7.35-6.74 3.86 0 6.86 2.75 6.86 6.41 0 3.83-2.41 6.9-5.75 6.9-1.12 0-2.18-.58-2.54-1.27l-.69 2.58c-.25.96-.93 2.16-1.39 2.89.85.26 1.75.4 2.68.4 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.19-.77 1.28-5.43 1.28-5.43s-.33-.65-.33-1.62c0-1.52.88-2.65 1.98-2.65.93 0 1.39.7 1.39 1.54 0 .94-.6 2.34-.91 3.64-.26 1.09.54 1.97 1.6 1.97 1.92 0 3.4-2.02 3.4-4.94 0-2.58-1.86-4.39-4.51-4.39-3.07 0-4.87 2.3-4.87 4.68 0 .93.36 1.92.8 2.46.09.11.1.2.08.31-.08.34-.27 1.09-.3 1.24-.05.2-.16.24-.38.14-1.39-.65-2.26-2.68-2.26-4.32 0-3.51 2.55-6.74 7.35-6.74 3.86 0 6.86 2.75 6.86 6.41 0 3.83-2.41 6.9-5.75 6.9-1.12 0-2.18-.58-2.54-1.27l-.69 2.58c-.25.96-.93 2.16-1.39 2.89.85.26 1.75.4 2.68.4 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
           </a>
           <a href="#" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow on Facebook">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
           </a>
         </div>
       </div>
-      <div class="contact-right">
+      <div class="ct-right reveal d1">
         <h3>Studio Hours</h3>
         <table class="hours-table">
           <tbody>
@@ -1123,22 +1104,20 @@
             <tr><td>Sunday</td><td>Wedding days only</td></tr>
           </tbody>
         </table>
-        <div class="contact-quote">
-          <blockquote>
-            "Photography is the story I fail to put into words — every frame a whisper of something eternal."
-          </blockquote>
+        <div class="ct-quote">
+          <blockquote>"光陰似箭，而愛情是永恆 — Time flies like an arrow, but love is eternal."</blockquote>
           <cite>— Sophia Laurent</cite>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <!-- Footer -->
   <footer id="footer" role="contentinfo">
-    <div class="container footer-inner">
-      <a href="#hero" class="logo">Lumière</a>
-      <p class="footer-copy">&copy; 2026 Lumière Bridal Photography. All rights reserved.</p>
-      <nav class="footer-nav" aria-label="Footer navigation">
+    <div class="container ft-inner">
+      <a href="#hero" class="logo">映月</a>
+      <p class="ft-copy">&copy; 2026 映月 · Lumière Bridal Photography. All rights reserved.</p>
+      <nav class="ft-nav" aria-label="Footer navigation">
         <a href="#about">About</a>
         <a href="#packages">Packages</a>
         <a href="#gallery">Gallery</a>
@@ -1148,114 +1127,112 @@
   </footer>
 
   <script>
-    // ── Nav scroll shadow ────────────────────────────────────
+    // Nav scroll shadow
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
 
-    // ── Mobile hamburger ─────────────────────────────────────
+    // Hamburger
     const hamburger = document.getElementById('hamburger');
     const navLinks  = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('nav-open');
-      hamburger.setAttribute('aria-expanded', isOpen);
+      const open = navLinks.classList.toggle('nav-open');
+      hamburger.setAttribute('aria-expanded', open);
     });
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
         navLinks.classList.remove('nav-open');
         hamburger.setAttribute('aria-expanded', 'false');
       });
     });
 
-    // ── Active nav link on scroll ────────────────────────────
-    const sections = document.querySelectorAll('section[id]');
+    // Active nav on scroll
+    const sections    = document.querySelectorAll('section[id]');
     const allNavLinks = document.querySelectorAll('.nav-links a:not(.nav-book)');
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
           allNavLinks.forEach(a => a.classList.remove('active'));
-          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
+          const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
         }
       });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    sections.forEach(s => sectionObserver.observe(s));
-
-    // ── Package card buttons → pre-select in form ────────────
-    document.querySelectorAll('.btn-package').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const packageName = btn.textContent.trim().replace('Select ', '');
-        const select = document.getElementById('package');
-        for (let opt of select.options) {
-          if (opt.text.startsWith(packageName)) {
-            select.value = opt.value;
-            break;
+    }, { rootMargin: '-40% 0px -55% 0px' }).observe(...sections) || sections.forEach(s =>
+      new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            allNavLinks.forEach(a => a.classList.remove('active'));
+            const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+            if (a) a.classList.add('active');
           }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' }).observe(s)
+    );
+
+    // Scroll reveal
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); ro.unobserve(e.target); } });
+    }, { rootMargin: '-8% 0px -8% 0px', threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+    // Package → form pre-select
+    document.querySelectorAll('.btn-pkg').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.textContent.trim().replace('Select ', '');
+        const sel  = document.getElementById('package');
+        for (const opt of sel.options) {
+          if (opt.text.startsWith(name)) { sel.value = opt.value; break; }
         }
       });
     });
 
-    // ── Set minimum date on date input ───────────────────────
-    const dateInput = document.getElementById('preferredDate');
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    dateInput.min = tomorrow.toISOString().split('T')[0];
+    // Date minimum
+    const di = document.getElementById('preferredDate');
+    const t  = new Date(); t.setDate(t.getDate() + 1);
+    di.min   = t.toISOString().split('T')[0];
 
-    // ── Booking form submission ──────────────────────────────
-    const form       = document.getElementById('booking-form');
-    const successEl  = document.getElementById('booking-success');
-    const errorEl    = document.getElementById('booking-error');
-    const submitBtn  = document.getElementById('submit-btn');
+    // Form submission
+    const form      = document.getElementById('booking-form');
+    const successEl = document.getElementById('booking-success');
+    const errorEl   = document.getElementById('booking-error');
+    const submitBtn = document.getElementById('submit-btn');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       errorEl.hidden = true;
-
-      const data = Object.fromEntries(new FormData(form).entries());
-
-      // Client-side validation
+      const data    = Object.fromEntries(new FormData(form).entries());
       const missing = [];
       if (!data.fullName.trim()) missing.push('Full Name');
       if (!data.email.trim())    missing.push('Email Address');
       if (!data.preferredDate)   missing.push('Preferred Date');
       if (!data.package)         missing.push('Package');
-
       if (missing.length) {
         errorEl.textContent = `Please fill in the required fields: ${missing.join(', ')}.`;
         errorEl.hidden = false;
         errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
-
+      submitBtn.disabled    = true;
+      submitBtn.textContent = '送出中… Sending…';
       try {
-        const res = await fetch('https://formsubmit.co/ajax/siewyee.emarsity@gmail.com', {
+        const res    = await fetch('https://formsubmit.co/ajax/siewyee.emarsity@gmail.com', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data)
         });
-
         const result = await res.json();
-
         if (res.ok && result.success === 'true') {
-          form.hidden = true;
+          form.hidden    = true;
           successEl.hidden = false;
           successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-          throw new Error(result.message || 'Submission failed');
-        }
+        } else { throw new Error(result.message || 'Submission failed'); }
       } catch {
         errorEl.textContent = 'Something went wrong. Please try again or email us directly at hello@lumierebridal.com.';
-        errorEl.hidden = false;
+        errorEl.hidden      = false;
         errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send My Inquiry';
+        submitBtn.disabled    = false;
+        submitBtn.textContent = '送出詢問 · Send My Inquiry';
       }
     });
   </script>
